@@ -1,0 +1,244 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4 p-md-5">
+            <div class="text-center mb-4">
+              <h2 class="fw-bold mb-3">Create an account</h2>
+              <p class="text-muted">Fill in the information below to create your account</p>
+            </div>
+            
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate class="needs-validation">
+              <!-- First Row: First Name and Last Name -->
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input 
+                    type="text" 
+                    id="firstName" 
+                    formControlName="firstName" 
+                    class="form-control"
+                    placeholder="first name"
+                    [ngClass]="{ 'is-invalid': (submitted || f['firstName'].dirty) && f['firstName'].errors }"
+                  >
+                  <div *ngIf="(submitted || f['firstName'].dirty) && f['firstName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['firstName'].errors['required']">First name is required</div>
+                    <div *ngIf="f['firstName'].errors['minlength']">First name must be at least 2 characters</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input 
+                    type="text" 
+                    id="lastName" 
+                    formControlName="lastName" 
+                    class="form-control"
+                    placeholder="last name"
+                    [ngClass]="{ 'is-invalid': (submitted || f['lastName'].dirty) && f['lastName'].errors }"
+                  >
+                  <div *ngIf="(submitted || f['lastName'].dirty) && f['lastName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['lastName'].errors['required']">Last name is required</div>
+                    <div *ngIf="f['lastName'].errors['minlength']">Last name must be at least 2 characters</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Second Row: Age and Work Email -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="age" class="form-label">Age</label>
+                  <input 
+                    type="number" 
+                    id="age" 
+                    formControlName="age" 
+                    class="form-control"
+                    placeholder="25"
+                    min="18"
+                    max="120"
+                    [ngClass]="{ 'is-invalid': (submitted || f['age'].dirty) && f['age'].errors }"
+                  >
+                  <div *ngIf="(submitted || f['age'].dirty) && f['age'].errors" class="invalid-feedback">
+                    <div *ngIf="f['age'].errors['required']">Age is required</div>
+                    <div *ngIf="f['age'].errors['min']">You must be at least 18 years old</div>
+                    <div *ngIf="f['age'].errors['max']">Please enter a valid age</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="workEmail" class="form-label">Work Email</label>
+                  <input 
+                    type="email" 
+                    id="workEmail" 
+                    formControlName="workEmail" 
+                    class="form-control"
+                    placeholder="john.doe@example.com"
+                    [ngClass]="{ 'is-invalid': (submitted || f['workEmail'].dirty) && f['workEmail'].errors }"
+                  >
+                  <div *ngIf="(submitted || f['workEmail'].dirty) && f['workEmail'].errors" class="invalid-feedback">
+                    <div *ngIf="f['workEmail'].errors['required']">Work email is required</div>
+                    <div *ngIf="f['workEmail'].errors['email']">Please enter a valid email address</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Gender Radio Buttons -->
+              <div class="mb-4">
+                <label class="form-label d-block mb-3">Gender</label>
+                <div class="d-flex gap-2">
+                  <div class="form-check form-check-inline">
+                    <input 
+                      class="form-check-input" 
+                      type="radio" 
+                      id="male" 
+                      value="male" 
+                      formControlName="gender"
+                    >
+                    <label class="form-check-label" for="male">
+                      <i class="fas fa-male me-1"></i> Male
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input 
+                      class="form-check-input" 
+                      type="radio" 
+                      id="female" 
+                      value="female" 
+                      formControlName="gender"
+                    >
+                    <label class="form-check-label" for="female">
+                      <i class="fas fa-female me-1"></i> Female
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input 
+                      class="form-check-input" 
+                      type="radio" 
+                      id="other" 
+                      value="other" 
+                      formControlName="gender"
+                    >
+                    <label class="form-check-label" for="other">
+                      <i class="fas fa-genderless me-1"></i> Prefer not to say
+                    </label>
+                  </div>
+                </div>
+                <div *ngIf="(submitted || f['gender'].dirty) && f['gender'].errors" class="invalid-feedback d-block">
+                  <div>Please select a gender</div>
+                </div>
+              </div>
+
+              <!-- Password and Confirm Password -->
+              <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                  <label for="password" class="form-label">Password</label>
+                  <div class="input-group">
+                    <input 
+                      [type]="showPassword ? 'text' : 'password'"
+                      id="password" 
+                      formControlName="password" 
+                      class="form-control"
+                      placeholder="••••••••"
+                      [ngClass]="{ 'is-invalid': (submitted || f['password'].dirty) && f['password'].errors }"
+                    >
+                    <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility('password')">
+                      <i class="far" [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"></i>
+                    </button>
+                  </div>
+                  <div *ngIf="(submitted || f['password'].dirty) && f['password'].errors" class="invalid-feedback d-block">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                    <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</div>
+                    <div *ngIf="f['password'].errors['pattern']">Must include uppercase, lowercase, number & special character</div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="confirmPassword" class="form-label">Confirm Password</label>
+                  <div class="input-group">
+                    <input 
+                      [type]="showConfirmPassword ? 'text' : 'password'"
+                      id="confirmPassword" 
+                      formControlName="confirmPassword" 
+                      class="form-control"
+                      placeholder="••••••••"
+                      [ngClass]="{ 'is-invalid': (submitted || f['confirmPassword'].dirty) && (f['confirmPassword'].errors || contactForm.errors?.['mustMatch']) }"
+                    >
+                    <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility('confirmPassword')">
+                      <i class="far" [ngClass]="{ 'fa-eye': !showConfirmPassword, 'fa-eye-slash': showConfirmPassword }"></i>
+                    </button>
+                  </div>
+                  <div *ngIf="(submitted || f['confirmPassword'].dirty) && (f['confirmPassword'].errors || contactForm.errors?.['mustMatch'])" class="invalid-feedback d-block">
+                    <div *ngIf="f['confirmPassword'].errors?.['required']">Please confirm your password</div>
+                    <div *ngIf="contactForm.errors?.['mustMatch']">Passwords do not match</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Password Requirements -->
+              <div class="alert alert-light border mb-4" role="alert">
+                <h6 class="alert-heading fw-bold mb-3">Password must contain:</h6>
+                <ul class="list-unstyled mb-0">
+                  <li class="mb-2">
+                    <i class="fas fa-check-circle text-success me-2" *ngIf="hasMinLength()"></i>
+                    <i class="far fa-circle text-muted me-2" *ngIf="!hasMinLength()"></i>
+                    At least 8 characters
+                  </li>
+                  <li class="mb-2">
+                    <i class="fas fa-check-circle text-success me-2" *ngIf="hasUppercase()"></i>
+                    <i class="far fa-circle text-muted me-2" *ngIf="!hasUppercase()"></i>
+                    At least one uppercase letter
+                  </li>
+                  <li class="mb-2">
+                    <i class="fas fa-check-circle text-success me-2" *ngIf="hasLowercase()"></i>
+                    <i class="far fa-circle text-muted me-2" *ngIf="!hasLowercase()"></i>
+                    At least one lowercase letter
+                  </li>
+                  <li class="mb-2">
+                    <i class="fas fa-check-circle text-success me-2" *ngIf="hasNumber()"></i>
+                    <i class="far fa-circle text-muted me-2" *ngIf="!hasNumber()"></i>
+                    At least one number
+                  </li>
+                  <li>
+                    <i class="fas fa-check-circle text-success me-2" *ngIf="hasSpecialChar()"></i>
+                    <i class="far fa-circle text-muted me-2" *ngIf="!hasSpecialChar()"></i>
+                    At least one special character
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Terms and Conditions -->
+              <div class="form-check mb-4">
+                <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  id="agreeTerms" 
+                  formControlName="agreeTerms"
+                  [class.is-invalid]="(submitted || f['agreeTerms'].dirty) && f['agreeTerms'].errors"
+                >
+                <label class="form-check-label small" for="agreeTerms">
+                  I agree to the <a href="#" class="text-primary text-decoration-none">Terms and Conditions</a>
+                </label>
+                <div *ngIf="(submitted || f['agreeTerms'].dirty) && f['agreeTerms'].errors" class="invalid-feedback d-block">
+                  <div>You must agree to the terms and conditions</div>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <div class="d-grid">
+                <button 
+                  type="submit" 
+                  class="btn btn-primary py-2"
+                  [disabled]="!contactForm.valid"
+                >
+                  Create Account
+                </button>
+              </div>
+
+              <div class="text-center mt-4">
+                <p class="mb-0">Already have an account? <a href="#" class="text-primary text-decoration-none">Sign in</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

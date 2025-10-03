@@ -1,1 +1,160 @@
-/* You can add global styles to this file, and also import other style files */
+/* Custom styles for the registration form */
+:root {
+    --primary-color: #4e73df;
+    --primary-hover: #2e59d9;
+    --border-color: #d1d3e2;
+    --text-muted: #6e707e;
+    --light: #f8f9fc;
+    --success: #1cc88a;
+  }
+  
+  body {
+    background-color: #f8f9fc;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #5a5c69;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+  }
+  
+  .card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    padding: 1.5rem;
+  }
+  
+  .form-control {
+    border: 1px solid #d1d3e2;
+    border-radius: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.35rem;
+  }
+  
+  .btn-primary:hover, .btn-primary:focus {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: none;
+  }
+  
+  .btn-outline-secondary {
+    border-color: #d1d3e2;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #f8f9fc;
+    border-color: #d1d3e2;
+    color: #4e73df;
+  }
+  
+  .invalid-feedback {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+  
+  .alert {
+    border-radius: 0.35rem;
+  }
+  
+  .alert-light {
+    background-color: #f8f9fc;
+    border-color: #e3e6f0;
+  }
+  
+  /* Custom checkbox */
+  .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .form-check-input:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  }
+  
+  /* Password requirements list */
+  .list-unstyled li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .list-unstyled i {
+    font-size: 0.9rem;
+    width: 1.25rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card {
+      margin: 1rem;
+    }
+    
+    .btn-group {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .btn-group .btn {
+      width: 100%;
+      text-align: left;
+    }
+  }
+  
+  /* Custom focus styles */
+  *:focus {
+    outline: none;
+  }
+  
+  .form-control.is-invalid:focus {
+    border-color: #e74a3b;
+    box-shadow: 0 0 0 0.2rem rgba(231, 74, 59, 0.25);
+  }
+  
+  /* Custom radio buttons */
+  .form-check-input[type="radio"] {
+    margin-top: 0.2rem;
+  }
+  
+  /* Improve spacing for form groups */
+  .form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #5a5c69;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #b7b9cc;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #858796;
+  }
